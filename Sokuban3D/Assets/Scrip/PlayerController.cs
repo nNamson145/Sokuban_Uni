@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 targetposition;
 
+    public LayerMask BlockingLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,14 @@ public class PlayerController : MonoBehaviour
     public void TryToMove(Vector3 direction)
     {
         targetposition = transform.position + direction;
-        StartCoroutine(MoveToPosition(targetposition));
+        if(!Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, BlockingLayer))
+        {
+            StartCoroutine(MoveToPosition(targetposition));
+        }
+        else if (hit.collider.CompareTag("Box"))
+        {
+
+        }
     }
 
     public IEnumerator MoveToPosition(Vector3 target)
