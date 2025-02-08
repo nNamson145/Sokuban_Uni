@@ -1,18 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BoxController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 targetposition;
+
+    public LayerMask BlockingLayer;
+
+    public bool isMoving;
+
+
+    public bool TryToPush(Vector3 direction, float speed)
     {
-        
+        targetposition = transform.position + direction;
+        if (!Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, BlockingLayer))
+        {
+            StartCoroutine(MoveToPosition(targetposition, speed));
+            return true;
+        }
+        return false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator MoveToPosition(Vector3 target, float speed)
     {
-        
+        isMoving = true;
+
+        while (Vector3.Distance(transform.position, target) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            yield return null;
+
+        }
+
+        transform.position = target;
+        isMoving = false;
     }
 }

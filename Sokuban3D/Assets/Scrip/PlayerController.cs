@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public bool isMoving = false;
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
 
     public Vector3 targetposition;
 
@@ -38,13 +38,17 @@ public class PlayerController : MonoBehaviour
     public void TryToMove(Vector3 direction)
     {
         targetposition = transform.position + direction;
-        if(!Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, BlockingLayer))
+        if (!Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, BlockingLayer))
         {
             StartCoroutine(MoveToPosition(targetposition));
         }
         else if (hit.collider.CompareTag("Box"))
         {
-
+            var box = hit.collider.GetComponent<BoxController>();
+            if (box != null && box.TryToPush(direction,moveSpeed))
+            {
+                StartCoroutine(MoveToPosition(targetposition));
+            }
         }
     }
 
