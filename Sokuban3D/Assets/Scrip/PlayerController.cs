@@ -30,9 +30,15 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) movement = Vector3.left;
 
         if (movement != Vector3.zero)
-        { 
+        {
+            transform.rotation = Quaternion.LookRotation(movement);
+
             TryToMove(movement);
+
+            print(transform.position);
         }
+
+        
     }
 
     public void TryToMove(Vector3 direction)
@@ -61,6 +67,7 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
             yield return null;
 
+            
         }
 
         transform.position = target;
