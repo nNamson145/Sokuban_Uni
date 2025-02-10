@@ -118,3 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616d7896b08053f47891115e9b4e331a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetposition: {x: 0, y: 0, z: 0}
+  BlockingLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  isMoving: 0
