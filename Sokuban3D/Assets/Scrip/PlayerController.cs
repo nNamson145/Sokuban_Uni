@@ -6,16 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     public bool isMoving = false;
 
+    public bool isPushing  = false;
+
     public float moveSpeed = 3f;
 
     public Vector3 targetposition;
 
     public LayerMask BlockingLayer;
 
+    AnimationManager animManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animManager = GetComponent<AnimationManager>();
     }
 
     // Update is called once per frame
@@ -47,6 +51,13 @@ public class PlayerController : MonoBehaviour
         if (!Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, BlockingLayer))
         {
             StartCoroutine(MoveToPosition(targetposition));
+
+            animManager.PlayerMoving(isMoving);
+
+            isPushing = false;
+
+
+
         }
         else if (hit.collider.CompareTag("Box"))
         {
@@ -54,7 +65,12 @@ public class PlayerController : MonoBehaviour
             if (box != null && box.TryToPush(direction,moveSpeed))
             {
                 StartCoroutine(MoveToPosition(targetposition));
+
+                animManager.PlayerMoving(isMoving);
+
             }
+
+            isPushing = true;
         }
     }
 
@@ -67,8 +83,8 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
             yield return null;
 
-            
         }
+
 
         transform.position = target;
         isMoving = false;
