@@ -6,16 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     public bool isMoving = false;
 
+    public bool isPushing  = false;
+
     public float moveSpeed = 3f;
 
     public Vector3 targetposition;
 
     public LayerMask BlockingLayer;
 
+    AnimationManager animManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        animManager = GetComponentInChildren<AnimationManager>();
     }
 
     // Update is called once per frame
@@ -24,7 +28,7 @@ public class PlayerController : MonoBehaviour
         if (isMoving) return;
         
         var movement = Vector3.zero;
-        if (Input.GetKey(KeyCode.W)) movement = Vector3.forward;
+        if (Input.GetKey(KeyCode.W)) movement = Vector3.forward; 
         if (Input.GetKey(KeyCode.S)) movement = Vector3.back;
         if (Input.GetKey(KeyCode.D)) movement = Vector3.right;
         if (Input.GetKey(KeyCode.A)) movement = Vector3.left;
@@ -34,11 +38,15 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(movement);
 
             TryToMove(movement);
-
-            print(transform.position);
         }
+        else
+        {
+            animManager.PlayerMoving(false); //
 
+            animManager.PlayerPushing(false); //
+        }
         
+
     }
 
     public void TryToMove(Vector3 direction)
@@ -47,6 +55,14 @@ public class PlayerController : MonoBehaviour
         if (!Physics.Raycast(transform.position, direction, out RaycastHit hit, 1f, BlockingLayer))
         {
             StartCoroutine(MoveToPosition(targetposition));
+
+            animManager.PlayerMoving(true); //
+
+            animManager.PlayerPushing(false); //
+
+            isPushing = false;
+
+
         }
         else if (hit.collider.CompareTag("Box"))
         {
@@ -54,7 +70,13 @@ public class PlayerController : MonoBehaviour
             if (box != null && box.TryToPush(direction,moveSpeed))
             {
                 StartCoroutine(MoveToPosition(targetposition));
+
+                animManager.PlayerMoving(false); //
+
+                animManager.PlayerPushing(true); //
             }
+
+            isPushing = true;
         }
     }
 
@@ -62,15 +84,16 @@ public class PlayerController : MonoBehaviour
     {
         isMoving = true;
 
-        while(Vector3.Distance(transform.position, target) > 0.01f)
+        while (Vector3.Distance(transform.position, target) > 0.001f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+           
             yield return null;
 
-            
         }
 
         transform.position = target;
         isMoving = false;
+
     }
 }
