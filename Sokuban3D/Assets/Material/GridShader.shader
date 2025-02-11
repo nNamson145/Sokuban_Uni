@@ -6,6 +6,7 @@
         _LineThickness ("Line Thickness", Range(0.001, 0.1)) = 0.02
         _LineColor ("Line Color", Color) = (0, 0, 0, 1) // Màu đường kẻ
         _BackgroundColor ("Background Color", Color) = (1, 1, 1, 1) // Màu nền
+
     }
     SubShader
     {

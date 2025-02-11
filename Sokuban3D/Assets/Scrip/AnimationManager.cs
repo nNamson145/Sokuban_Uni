@@ -8,13 +8,13 @@ public class AnimationManager : MonoBehaviour
     const string STR_IS_MOVING = "isMoving";
     const string STR_IS_PUSHING = "isPushing";
 
-    public Animator animatorController;
+    Animator animatorController;
 
 
 
     private void Start()
     {
-        PlayerController playerController = GetComponent<PlayerController>();
+        animatorController = GetComponentInChildren<Animator>();
     }
 
     public void PlayerMoving(bool bMove)

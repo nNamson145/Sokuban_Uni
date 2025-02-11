@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animManager = GetComponent<AnimationManager>();
+        animManager = GetComponentInChildren<AnimationManager>();
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         if (isMoving) return;
         
         var movement = Vector3.zero;
-        if (Input.GetKey(KeyCode.W)) movement = Vector3.forward;
+        if (Input.GetKey(KeyCode.W)) movement = Vector3.forward; 
         if (Input.GetKey(KeyCode.S)) movement = Vector3.back;
         if (Input.GetKey(KeyCode.D)) movement = Vector3.right;
         if (Input.GetKey(KeyCode.A)) movement = Vector3.left;
@@ -38,11 +38,15 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(movement);
 
             TryToMove(movement);
-
-            print(transform.position);
         }
+        else
+        {
+            animManager.PlayerMoving(false); //
 
+            animManager.PlayerPushing(false); //
+        }
         
+
     }
 
     public void TryToMove(Vector3 direction)
@@ -52,10 +56,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(MoveToPosition(targetposition));
 
-            animManager.PlayerMoving(isMoving);
+            animManager.PlayerMoving(true); //
+
+            animManager.PlayerPushing(false); //
 
             isPushing = false;
-
 
 
         }
@@ -66,8 +71,9 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(MoveToPosition(targetposition));
 
-                animManager.PlayerMoving(isMoving);
+                animManager.PlayerMoving(false); //
 
+                animManager.PlayerPushing(true); //
             }
 
             isPushing = true;
@@ -78,15 +84,16 @@ public class PlayerController : MonoBehaviour
     {
         isMoving = true;
 
-        while(Vector3.Distance(transform.position, target) > 0.01f)
+        while (Vector3.Distance(transform.position, target) > 0.001f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+           
             yield return null;
 
         }
 
-
         transform.position = target;
         isMoving = false;
+
     }
 }

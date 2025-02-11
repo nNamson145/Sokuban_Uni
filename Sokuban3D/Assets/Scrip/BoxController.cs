@@ -9,7 +9,9 @@ public class BoxController : MonoBehaviour
 
     public LayerMask BlockingLayer;
 
-    public bool isMoving;
+    private bool isMoving;
+
+    public bool onGoal;
 
 
     public bool TryToPush(Vector3 direction, float speed)
@@ -36,5 +38,21 @@ public class BoxController : MonoBehaviour
 
         transform.position = target;
         isMoving = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other) 
+        {
+            
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other) 
+        {
+        
+        }
     }
 }

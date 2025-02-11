@@ -363,6 +363,7 @@
 -analyzer:"D:/Unity/Hub/Editor/2022.3.14f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scrip/AnimationManager.cs"
 "Assets/Scrip/BoxController.cs"
+"Assets/Scrip/GameManager.cs"
 "Assets/Scrip/PlayerController.cs"
 "Assets/Scrip/SnapToGrid.cs"
 -langversion:9.0
