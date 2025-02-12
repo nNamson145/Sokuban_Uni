@@ -14,12 +14,13 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask BlockingLayer;
 
-    AnimationManager animManager;
+    [SerializeField]
+    private AnimationManager animManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        animManager = GetComponentInChildren<AnimationManager>();
+        //animManager = GetComponent<AnimationManager>();
     }
 
     // Update is called once per frame
