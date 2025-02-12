@@ -6,9 +6,13 @@ public class SnapToGrid : MonoBehaviour
 {
     public float gridSize = 1f;
     // Start is called before the first frame update
+
+    private Material objectMaterial;
+    
+
     void Start()
     {
-        
+        objectMaterial = GetComponent<Material>();
     }
 
     // Update is called once per frame
@@ -29,5 +33,7 @@ public class SnapToGrid : MonoBehaviour
 
             transform.position = possition;
         }
+
+        
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoxController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class BoxController : MonoBehaviour
 
     public bool onGoal;
 
+    [SerializeField]
+    private Toggle checkBox;
 
     public bool TryToPush(Vector3 direction, float speed)
     {
@@ -40,19 +43,31 @@ public class BoxController : MonoBehaviour
         isMoving = false;
     }
 
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other) 
+        if (other.CompareTag("Goal"))
         {
-            
+            onGoal = true;
+
+            checkBox.isOn = onGoal;
+
+            print(other.gameObject);
+
+            GameManager.Instance.CheckWin();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other) 
+        if (other.CompareTag("Goal"))
         {
-        
+            onGoal = false;
+
+            checkBox.isOn = onGoal;
+
+            
         }
     }
 }
