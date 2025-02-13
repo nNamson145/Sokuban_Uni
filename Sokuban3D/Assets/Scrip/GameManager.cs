@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public List<GameObject> levels;
+    public List<Level> levelList;
 
-    private int currrentLevel = 0;
+    public Level currrentLevel;
+
+    public int indexlevel;
 
     public int score;
 
@@ -22,12 +25,34 @@ public class GameManager : MonoBehaviour
         Instance = null;
     }
 
+    public void NewLevel()
+    {
+        if (indexlevel >= 0 && indexlevel < levelList.Count)
+        {
+            currrentLevel = levelList[indexlevel];
+        }
+    }
+
     public void CheckWin()
     {
-        foreach (var level in levels)
+        score = 0;
+        foreach (BoxController box in currrentLevel.boxList)
         {
             
+            if (box.onGoal)
+            {
+                score++;
+            }
         }
-        Debug.Log("Level Compelete !");
+
+        if (score == currrentLevel.goalList.Count)
+        {
+            Debug.Log("Level Compelete !");
+
+
+
+            indexlevel++;
+        }
+
     }
 }
