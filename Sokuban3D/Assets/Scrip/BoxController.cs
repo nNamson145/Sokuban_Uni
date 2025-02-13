@@ -67,7 +67,6 @@ public class BoxController : MonoBehaviour
 
             checkBox.isOn = onGoal;
 
-            
         }
     }
 }
