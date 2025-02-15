@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool allowMove = true;
+
     public bool isMoving = false;
 
     public bool isPushing  = false;
@@ -43,10 +45,10 @@ public class PlayerController : MonoBehaviour
         if (isMoving) return;
         
         var movement = Vector3.zero;
-        if (Input.GetKey(KeyCode.W)) movement = Vector3.forward; 
-        if (Input.GetKey(KeyCode.S)) movement = Vector3.back;
-        if (Input.GetKey(KeyCode.D)) movement = Vector3.right;
-        if (Input.GetKey(KeyCode.A)) movement = Vector3.left;
+        if (Input.GetKey(KeyCode.W) && allowMove) movement = Vector3.forward; 
+        if (Input.GetKey(KeyCode.S) && allowMove) movement = Vector3.back;
+        if (Input.GetKey(KeyCode.D) && allowMove) movement = Vector3.right;
+        if (Input.GetKey(KeyCode.A) && allowMove) movement = Vector3.left;
 
         if (movement != Vector3.zero)
         {
@@ -111,4 +113,12 @@ public class PlayerController : MonoBehaviour
         isMoving = false;
 
     }
+
+    IEnumerator DelayedCoroutine()
+    {
+        yield return new WaitForSeconds(10f);
+
+        PlayerController.instance.allowMove = true;
+    }
+
 }
