@@ -17,6 +17,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private AnimationManager animManager;
 
+    public static PlayerController instance;
+
+    //Singleton
+    private void Awake()
+    {
+        if (instance == null)
+        {
+           instance = this;
+           
+        }
+
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {

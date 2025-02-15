@@ -15,9 +15,12 @@ public class GameManager : MonoBehaviour
 
     public int score;
 
+
+    //Singleton
     private void OnEnable()
     {
         Instance = this;
+        NewLevel(indexlevel);
     }
 
     private void OnDisable()
@@ -25,12 +28,24 @@ public class GameManager : MonoBehaviour
         Instance = null;
     }
 
-    public void NewLevel()
+    public void NewLevel(int index)
     {
-        if (indexlevel >= 0 && indexlevel < levelList.Count)
+        if (index >= 0 && index < levelList.Count)
         {
-            currrentLevel = levelList[indexlevel];
+            currrentLevel = levelList[index];
         }
+
+        if (currrentLevel != null)
+        {
+            currrentLevel.gameObject.SetActive(true);
+            Debug.Log(currrentLevel.name);
+        }
+        else
+        {
+            Debug.Log("CurrentLevel is null!!");
+        }
+
+        
     }
 
     public void CheckWin()
@@ -47,12 +62,12 @@ public class GameManager : MonoBehaviour
 
         if (score == currrentLevel.goalList.Count)
         {
+
             Debug.Log("Level Compelete !");
-
-
-
+            currrentLevel.OpenTheDoor();
             indexlevel++;
-        }
+            //NewLevel(indexlevel);
 
+        }
     }
 }
