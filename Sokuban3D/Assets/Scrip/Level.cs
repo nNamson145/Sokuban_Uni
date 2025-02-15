@@ -10,19 +10,22 @@ public class Level : MonoBehaviour
 
     public LevelData levelData;
 
+    public GameObject TheDoor;
 
     // Start is called before the first frame update
     void Start()
     {
-        /*foreach (BoxController box in boxList)
-        {
-            Debug.Log(box);
-        }*/
+        TheDoor.GetComponent<Door>();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void OpenTheDoor()
+    {
+        TheDoor.GetComponent<Door>().SetLayerMark(true);
     }
 }
