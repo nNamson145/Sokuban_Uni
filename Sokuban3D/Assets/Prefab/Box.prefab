@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3753437971909098785}
   - component: {fileID: 1604264453730912624}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 9158579247050503215}
   - component: {fileID: 7839721085840119819}
   - component: {fileID: 5400118962828853800}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canvas Check Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 5069789135110520127}
   - component: {fileID: 3980336860277059800}
   - component: {fileID: 4136037011498985961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 7715260458042620377}
   - component: {fileID: 4307280564496588403}
   - component: {fileID: 4741907388303670260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,9 +352,9 @@ GameObject:
   - component: {fileID: 5556873866005038606}
   - component: {fileID: 8112999902213253675}
   - component: {fileID: 7478952078075163087}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

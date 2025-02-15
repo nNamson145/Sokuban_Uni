@@ -25,11 +25,13 @@ public class Door : MonoBehaviour
         if (Open)
         {
             doorOpen = true;
+            gameObject.GetComponent<Collider>().isTrigger = true;
             gameObject.layer = 0;
         }
         else
         {
             doorOpen = false;
+            
             gameObject.layer = 10;
     
         }
@@ -38,11 +40,15 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Door"))
+        if (other.CompareTag("Player"))
         {
+            PlayerController.instance.allowMove = false;
+            PlayerController.instance.gameObject.transform.position = new Vector3(0, 0.5f, 0);
             GameManager.Instance.currrentLevel.gameObject.SetActive(false);
             GameManager.Instance.NewLevel(GameManager.Instance.indexlevel);
-            PlayerController.instance.gameObject.transform.position = new Vector3(0, 0.5f, 0);
+            
         }
     }
+
+    
 }
