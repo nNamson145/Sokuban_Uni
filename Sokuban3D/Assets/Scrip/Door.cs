@@ -7,10 +7,13 @@ public class Door : MonoBehaviour
 {
     public bool doorOpen;
 
+    PlayerController controller;
+
     // Start is called before the first frame update
     void Start()
     {
         doorOpen =false;
+        controller = PlayerController.instance;
     }
 
     // Update is called once per frame
@@ -42,11 +45,12 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController.instance.allowMove = false;
-            PlayerController.instance.gameObject.transform.position = new Vector3(0, 0.5f, 0);
+            
+            controller.allowMove = false;
+            controller.gameObject.transform.position = new Vector3(0, 0.5f, 0);
             GameManager.Instance.currrentLevel.gameObject.SetActive(false);
             GameManager.Instance.NewLevel(GameManager.Instance.indexlevel);
-            
+            controller.StartCoroutine(controller.DelayedCoroutine());
         }
     }
 

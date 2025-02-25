@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    IEnumerator DelayedCoroutine()
+    public IEnumerator DelayedCoroutine()
     {
         yield return new WaitForSeconds(10f);
 
