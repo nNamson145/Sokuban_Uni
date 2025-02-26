@@ -45,12 +45,14 @@ public class Door : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            
             controller.allowMove = false;
-            controller.gameObject.transform.position = new Vector3(0, 0.5f, 0);
+            //controller.gameObject.transform.position = new Vector3(0, 0.5f, 0);
             GameManager.Instance.currrentLevel.gameObject.SetActive(false);
             GameManager.Instance.NewLevel(GameManager.Instance.indexlevel);
+
             controller.StartCoroutine(controller.DelayedCoroutine());
+            
+
         }
     }
 

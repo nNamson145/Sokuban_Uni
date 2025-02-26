@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController instance;
 
+    GameManager gameManager = GameManager.Instance;
+
     //Singleton
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //animManager = GetComponent<AnimationManager>();
+
     }
 
     // Update is called once per frame
@@ -116,9 +119,20 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator DelayedCoroutine()
     {
-        yield return new WaitForSeconds(10f);
+        transform.position = new Vector3(100, 0.5f, 100);
+        if (GameManager.Instance.indexlevel == GameManager.Instance.levelList.Count)
+        {
+            StopAllCoroutines();
+            
+        }
+        else
+        {
+            yield return new WaitForSeconds(3f);
 
-        PlayerController.instance.allowMove = true;
+            transform.position = new Vector3(0, 0.5f, 0);
+
+            allowMove = true;
+        }
     }
 
 }
