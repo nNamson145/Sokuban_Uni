@@ -6,11 +6,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewLevel", menuName = "LevelConfig", order = 1)]
 public class LevelData : ScriptableObject
 {
-    public GameObject prefabLevel;
+    public int ordinalNumber;
 
     public string levelName;
 
     public string levelDescription;
-    
+
+    public GameObject prefabLevel;
+
     public Sprite displayImage;
 }
