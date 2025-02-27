@@ -330,6 +330,7 @@
 -r:"D:/Unity/Hub/Editor/2022.3.14f1/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
 -r:"Library/PackageCache/com.unity.testtools.codecoverage@1.2.4/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/PackageCache/com.unity.visualscripting@1.9.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.2D.Sprite.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.EditorCoroutines.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.Performance.Profile-Analyzer.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.PlasticSCM.Editor.ref.dll"
@@ -368,6 +369,9 @@
 "Assets/Scrip/GameManager.cs"
 "Assets/Scrip/Level.cs"
 "Assets/Scrip/PlayerController.cs"
+"Assets/Scrip/ScripUI/UIingame.cs"
+"Assets/Scrip/ScripUI/UIMainMenu.cs"
+"Assets/Scrip/ScripUI/UIManager.cs"
 "Assets/Scrip/SnapToGrid.cs"
 "Assets/ScripTableObject/LevelData.cs"
 -langversion:9.0

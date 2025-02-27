@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         Instance = this;
-        NewLevel(indexlevel);
+        //NewLevel(indexlevel);
     }
 
     private void OnDisable()
@@ -71,4 +71,8 @@ public class GameManager : MonoBehaviour
         }
     }
     
+    public void OnQuitGame()
+    {
+        UnityEditor.EditorApplication.isPlaying = true;
+    }
 }
